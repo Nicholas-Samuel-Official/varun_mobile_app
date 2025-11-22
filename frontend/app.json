@@ -33,8 +33,7 @@
           "resizeMode": "contain",
           "backgroundColor": "#000"
         }
-      ],
-      "@react-native-async-storage/async-storage"
+      ]
     ],
     "experiments": {
       "typedRoutes": true
