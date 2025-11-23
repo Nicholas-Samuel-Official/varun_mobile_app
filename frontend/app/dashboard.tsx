@@ -391,8 +391,8 @@ export default function Dashboard() {
                 <Text style={styles.metricLabel}>AQI</Text>
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
-                <Text style={styles.metricValue}>{dashboardData.aqi}</Text>
-                <Text style={styles.metricUnit}>Good</Text>
+                <Text style={styles.metricValue}>{Math.round(dashboardData.aqi)}</Text>
+                <Text style={styles.metricUnit}>{dashboardData.aqi_category}</Text>
               </View>
             </View>
 
