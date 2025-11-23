@@ -10,6 +10,11 @@ from typing import List, Optional, Dict, Any
 import uuid
 from datetime import datetime, timedelta
 import random
+from weather_service import WeatherService
+
+# Initialize weather service
+weather_service = WeatherService()
+
 
 
 ROOT_DIR = Path(__file__).parent
