@@ -65,4 +65,8 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
   },
+  mascotIcon: {
+    width: 50,
+    height: 50,
+  },
 });
