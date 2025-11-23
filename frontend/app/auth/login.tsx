@@ -28,7 +28,7 @@ export default function Login() {
       await AsyncStorage.setItem('userEmail', email);
       
       setTimeout(() => {
-        router.replace('/(tabs)');
+        router.replace('/dashboard');
       }, 500);
     } catch (error) {
       console.error('Login error:', error);
