@@ -15,13 +15,16 @@ export default function Index() {
   const checkOnboardingStatus = async () => {
     try {
       const hasLaunched = await AsyncStorage.getItem('hasLaunched');
+      const termsAccepted = await AsyncStorage.getItem('termsAccepted');
       const isLoggedIn = await AsyncStorage.getItem('isLoggedIn');
 
       setTimeout(() => {
         if (!hasLaunched) {
           router.replace('/welcome');
+        } else if (!termsAccepted) {
+          router.replace('/terms');
         } else if (isLoggedIn === 'true') {
-          router.replace('/(tabs)');
+          router.replace('/dashboard');
         } else {
           router.replace('/auth/login');
         }
