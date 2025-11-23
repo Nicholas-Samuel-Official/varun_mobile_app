@@ -1,83 +1,95 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTheme } from '../contexts/ThemeContext';
-import { useLanguage } from '../contexts/LanguageContext';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Welcome() {
   const router = useRouter();
   const { colors } = useTheme();
-  const { t } = useLanguage();
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    // Progress bar animation
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 100);
+
+    // Navigate after 5 seconds
+    const timer = setTimeout(() => {
+      router.replace('/terms');
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
+  }, []);
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: colors.background,
-    },
-    content: {
-      flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      paddingHorizontal: 32,
     },
     logoContainer: {
-      marginBottom: 48,
+      alignItems: 'center',
+      marginBottom: 40,
     },
     logo: {
-      width: 120,
-      height: 120,
-      borderRadius: 8,
-      backgroundColor: colors.primary,
-      alignItems: 'center',
-      justifyContent: 'center',
+      width: 150,
+      height: 150,
+      marginBottom: 32,
     },
     appName: {
-      fontSize: 40,
+      fontSize: 48,
       fontWeight: '700',
-      color: colors.text,
-      marginTop: 24,
-      letterSpacing: -1,
+      color: colors.primary,
+      letterSpacing: 2,
     },
     tagline: {
-      fontSize: 16,
+      fontSize: 14,
       color: colors.textSecondary,
       marginTop: 8,
       textAlign: 'center',
-      lineHeight: 24,
+      paddingHorizontal: 40,
     },
-    button: {
+    progressContainer: {
+      position: 'absolute',
+      bottom: 60,
+      width: '60%',
+      height: 3,
+      backgroundColor: colors.border,
+      borderRadius: 2,
+      overflow: 'hidden',
+    },
+    progressBar: {
+      height: '100%',
       backgroundColor: colors.primary,
-      paddingVertical: 16,
-      paddingHorizontal: 48,
-      borderRadius: 8,
-      marginTop: 64,
-      minWidth: 200,
-    },
-    buttonText: {
-      color: '#FFFFFF',
-      fontSize: 18,
-      fontWeight: '700',
-      textAlign: 'center',
+      borderRadius: 2,
     },
   });
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.logoContainer}>
-          <View style={styles.logo}>
-            <MaterialCommunityIcons name="water" size={64} color="#FFFFFF" />
-          </View>
-        </View>
+    <View style={styles.container}>
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../assets/ora_logo.png')}
+          style={styles.logo}
+          resizeMode="contain"
+        />
         <Text style={styles.appName}>VARUN</Text>
-        <Text style={styles.tagline}>
-          Intelligent Rainwater Harvesting{' \n'}&{' \n'}Recharge Planner
-        </Text>
-        <TouchableOpacity style={styles.button} onPress={() => router.push('/language')}>
-          <Text style={styles.buttonText}>Get Started</Text>
-        </TouchableOpacity>
+        <Text style={styles.tagline}>Smart Water Recharge & Sustainability</Text>
       </View>
-    </SafeAreaView>
+      <View style={styles.progressContainer}>
+        <View style={[styles.progressBar, { width: `${progress}%` }]} />
+      </View>
+    </View>
   );
 }
