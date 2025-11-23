@@ -33,7 +33,7 @@ export default function Signup() {
       await AsyncStorage.setItem('userEmail', formData.email);
 
       setTimeout(() => {
-        router.replace('/(tabs)');
+        router.replace('/dashboard');
       }, 500);
     } catch (error) {
       console.error('Signup error:', error);
