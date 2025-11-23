@@ -47,6 +47,16 @@ export default function Dashboard() {
     },
     headerLeft: {
       flex: 1,
+      flexDirection: 'row',
+      alignItems: 'center',
+    },
+    mascot: {
+      width: 50,
+      height: 50,
+      marginRight: 12,
+    },
+    headerTextContainer: {
+      flex: 1,
     },
     greeting: {
       fontSize: 14 * fontScale,
