@@ -212,15 +212,17 @@ export default function Dashboard() {
     weatherDetails: {
       flexDirection: 'row',
       flexWrap: 'wrap',
-      gap: 16,
+      marginHorizontal: -6,
     },
     weatherDetail: {
       flexDirection: 'row',
       alignItems: 'center',
-      backgroundColor: 'rgba(255, 255, 255, 0.2)',
+      backgroundColor: 'rgba(255, 255, 255, 0.25)',
       paddingHorizontal: 12,
       paddingVertical: 8,
       borderRadius: 20,
+      marginHorizontal: 6,
+      marginBottom: 8,
     },
     weatherDetailText: {
       fontSize: 14 * fontScale,
