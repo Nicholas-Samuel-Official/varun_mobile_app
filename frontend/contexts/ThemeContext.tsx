@@ -1,45 +1,62 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type Theme = 'light' | 'dark';
 
-interface ThemeContextType {
-  theme: Theme;
-  toggleTheme: () => void;
-  colors: typeof lightColors;
+interface ThemeColors {
+  primary: string;
+  primaryLight: string;
+  primaryDark: string;
+  background: string;
+  card: string;
+  text: string;
+  textSecondary: string;
+  border: string;
+  success: string;
+  error: string;
+  warning: string;
+  info: string;
 }
 
-const lightColors = {
-  primary: '#0055FF',
-  background: '#FFFFFF',
-  card: '#F8F9FA',
-  text: '#000000',
-  textSecondary: '#666666',
-  border: '#E5E5E5',
-  success: '#00C853',
-  warning: '#FF6D00',
-  error: '#D32F2F',
-  icon: '#1C1C1E',
-  shadow: 'rgba(0, 0, 0, 0.08)',
+interface ThemeContextType {
+  theme: Theme;
+  colors: ThemeColors;
+  toggleTheme: () => void;
+}
+
+const lightColors: ThemeColors = {
+  primary: '#77afe2',
+  primaryLight: '#a2cef5',
+  primaryDark: '#5a9cd9',
+  background: '#f8f9fa',
+  card: '#ffffff',
+  text: '#1a1a1a',
+  textSecondary: '#6c757d',
+  border: '#dee2e6',
+  success: '#28a745',
+  error: '#dc3545',
+  warning: '#ffc107',
+  info: '#82b7e7',
 };
 
-const darkColors = {
-  primary: '#0072CE',
-  background: '#000000',
-  card: '#1C1C1E',
-  text: '#FFFFFF',
-  textSecondary: '#AAAAAA',
-  border: '#2C2C2E',
-  success: '#00C853',
-  warning: '#FF6D00',
-  error: '#D32F2F',
-  icon: '#E5E5E5',
-  shadow: 'rgba(255, 255, 255, 0.05)',
+const darkColors: ThemeColors = {
+  primary: '#82b7e7',
+  primaryLight: '#b0d3f3',
+  primaryDark: '#77afe2',
+  background: '#121212',
+  card: '#1e1e1e',
+  text: '#ffffff',
+  textSecondary: '#b0b0b0',
+  border: '#2c2c2c',
+  success: '#28a745',
+  error: '#dc3545',
+  warning: '#ffc107',
+  info: '#93c2ec',
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
@@ -70,7 +87,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const colors = theme === 'light' ? lightColors : darkColors;
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, colors }}>
+    <ThemeContext.Provider value={{ theme, colors, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
