@@ -334,8 +334,8 @@ export default function Dashboard() {
             <View style={styles.weatherOverlay}>
               <View style={styles.weatherTop}>
                 <View style={styles.locationRow}>
-                  <Ionicons name="location" size={20} color="#FFFFFF" />
-                  <Text style={styles.locationText}>Current Location</Text>
+                  <Ionicons name="partly-sunny" size={20} color="#FFFFFF" />
+                  <Text style={styles.locationText}>Weather Now</Text>
                 </View>
                 <Text style={styles.mainTemp}>{Math.round(dashboardData.temperature)}°</Text>
                 <Text style={styles.weatherDesc}>{dashboardData.weather}</Text>
