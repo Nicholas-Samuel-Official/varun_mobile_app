@@ -289,6 +289,56 @@ export default function Dashboard() {
       color: colors.textSecondary,
       fontWeight: '600',
     },
+    iotSection: {
+      paddingHorizontal: 20,
+      marginBottom: 32,
+    },
+    iotCard: {
+      backgroundColor: colors.card,
+      borderRadius: 16,
+      padding: 20,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+    iotHeader: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 16,
+    },
+    iotTextContainer: {
+      flex: 1,
+      marginLeft: 12,
+    },
+    iotTitle: {
+      fontSize: 18 * fontScale,
+      fontWeight: '700',
+      color: colors.text,
+      marginBottom: 4,
+    },
+    iotSubtitle: {
+      fontSize: 13 * fontScale,
+      color: colors.textSecondary,
+    },
+    iotStats: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      paddingTop: 16,
+      borderTopWidth: 1,
+      borderTopColor: colors.border,
+    },
+    iotStat: {
+      alignItems: 'center',
+    },
+    iotStatValue: {
+      fontSize: 20 * fontScale,
+      fontWeight: '700',
+      color: colors.primary,
+      marginBottom: 4,
+    },
+    iotStatLabel: {
+      fontSize: 12 * fontScale,
+      color: colors.textSecondary,
+    },
   });
 
   return (
