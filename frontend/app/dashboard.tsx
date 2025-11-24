@@ -24,6 +24,7 @@ export default function Dashboard() {
     aqi: 0,
     aqi_category: 'Loading...',
     humidity: 0,
+    wind_speed: 0,
     waterSaved: 1250,
   });
   const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
