@@ -77,6 +77,7 @@ export default function Dashboard() {
         aqi: data.aqi.aqi || 0,
         aqi_category: data.aqi.aqi_category || 'Unknown',
         humidity: data.weather.humidity || 0,
+        wind_speed: data.weather.wind_speed || 0,
         waterSaved: 1250,
       });
       
