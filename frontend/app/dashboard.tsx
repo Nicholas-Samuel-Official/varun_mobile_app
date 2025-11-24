@@ -350,6 +350,10 @@ export default function Dashboard() {
                   <MaterialCommunityIcons name="weather-rainy" size={18} color="#FFFFFF" />
                   <Text style={styles.weatherDetailText}>Rain: {dashboardData.rainfall}mm</Text>
                 </View>
+                <View style={styles.weatherDetail}>
+                  <MaterialCommunityIcons name="weather-windy" size={18} color="#FFFFFF" />
+                  <Text style={styles.weatherDetailText}>Wind: {dashboardData.wind_speed} km/h</Text>
+                </View>
                 <View style={[styles.weatherDetail, { backgroundColor: getAQIColor(dashboardData.aqi) + '80' }]}>
                   <MaterialCommunityIcons name="air-filter" size={18} color="#FFFFFF" />
                   <Text style={styles.weatherDetailText}>AQI: {Math.round(dashboardData.aqi)}</Text>
