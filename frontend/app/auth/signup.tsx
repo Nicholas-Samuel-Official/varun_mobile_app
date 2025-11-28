@@ -23,24 +23,20 @@ export default function Signup() {
 
   const handleSignup = async () => {
     if (!formData.name || !formData.email || !formData.password) {
-      alert('Please fill all required fields');
+      Alert.alert('Error', 'Please fill all required fields');
       return;
     }
 
     setLoading(true);
-    try {
-      await AsyncStorage.setItem('isLoggedIn', 'true');
-      await AsyncStorage.setItem('userName', formData.name);
-      await AsyncStorage.setItem('userEmail', formData.email);
+    const result = await authService.signup(formData.name, formData.email, formData.phone, formData.password);
+    setLoading(false);
 
-      setTimeout(() => {
-        router.replace('/dashboard');
-      }, 500);
-    } catch (error) {
-      console.error('Signup error:', error);
-      alert('Signup failed. Please try again.');
-    } finally {
-      setLoading(false);
+    if (result.success) {
+      Alert.alert('Success', 'Account created successfully!', [
+        { text: 'OK', onPress: () => router.replace('/dashboard') }
+      ]);
+    } else {
+      Alert.alert('Signup Failed', result.message || 'Failed to create account');
     }
   };
 
