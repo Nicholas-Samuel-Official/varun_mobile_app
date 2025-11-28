@@ -168,15 +168,15 @@ export default function Login() {
           </View>
 
           <View style={styles.form}>
-            <Text style={styles.label}>{t('email')}</Text>
+            <Text style={styles.label}>Email or Phone</Text>
             <View style={styles.inputContainer}>
               <TextInput
                 style={styles.input}
-                placeholder="Enter your email"
+                placeholder="Enter your email or phone"
                 placeholderTextColor={colors.textSecondary}
-                value={email}
-                onChangeText={setEmail}
-                keyboardType="email-address"
+                value={emailOrPhone}
+                onChangeText={setEmailOrPhone}
+                keyboardType="default"
                 autoCapitalize="none"
               />
             </View>
