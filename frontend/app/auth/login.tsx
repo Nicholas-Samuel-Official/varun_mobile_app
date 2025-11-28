@@ -18,24 +18,19 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const handleLogin = async () => {
-    if (!email || !password) {
-      alert('Please enter email and password');
+    if (!emailOrPhone || !password) {
+      Alert.alert('Error', 'Please fill in all fields');
       return;
     }
 
     setLoading(true);
-    try {
-      await AsyncStorage.setItem('isLoggedIn', 'true');
-      await AsyncStorage.setItem('userEmail', email);
-      
-      setTimeout(() => {
-        router.replace('/dashboard');
-      }, 500);
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('Login failed. Please try again.');
-    } finally {
-      setLoading(false);
+    const result = await authService.login(emailOrPhone, password);
+    setLoading(false);
+
+    if (result.success) {
+      router.replace('/dashboard');
+    } else {
+      Alert.alert('Login Failed', result.message || 'Invalid credentials');
     }
   };
 
