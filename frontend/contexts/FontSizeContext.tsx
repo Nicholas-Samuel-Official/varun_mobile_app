@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type FontSize = 'small' | 'medium' | 'large';
@@ -17,7 +17,7 @@ const fontScales = {
 
 const FontSizeContext = createContext<FontSizeContextType | undefined>(undefined);
 
-export const FontSizeProvider = ({ children }: { children: ReactNode }) => {
+export const FontSizeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [fontSize, setFontSizeState] = useState<FontSize>('medium');
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const FontSizeProvider = ({ children }: { children: ReactNode }) => {
   const loadFontSize = async () => {
     try {
       const savedSize = await AsyncStorage.getItem('fontSize');
-      if (savedSize === 'small' || savedSize === 'medium' || savedSize === 'large') {
+      if (savedSize && (savedSize === 'small' || savedSize === 'medium' || savedSize === 'large')) {
         setFontSizeState(savedSize);
       }
     } catch (error) {
