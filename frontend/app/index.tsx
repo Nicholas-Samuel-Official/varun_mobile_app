@@ -9,10 +9,6 @@ export default function Index() {
   const router = useRouter();
   const { colors } = useTheme();
 
-  useEffect(() => {
-    checkOnboardingStatus();
-  }, []);
-
   const checkOnboardingStatus = async () => {
     try {
       const hasLaunched = await AsyncStorage.getItem('hasLaunched');
@@ -35,6 +31,10 @@ export default function Index() {
       router.replace('/welcome');
     }
   };
+
+  useEffect(() => {
+    checkOnboardingStatus();
+  }, []);
 
   return (
     <View style={{ flex: 1, backgroundColor: colors.background, alignItems: 'center', justifyContent: 'center' }}>
