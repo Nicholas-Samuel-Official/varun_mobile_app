@@ -19,6 +19,7 @@ const menuItems = [
   { id: 'profile', title: 'Profile', icon: 'account', route: '/edit-profile' },
   { id: 'settings', title: 'Settings', icon: 'cog', route: '/settings' },
   { id: 'about', title: 'About Us', icon: 'information', route: '/about-us' },
+  { id: 'logout', title: 'Logout', icon: 'logout', route: null },
 ];
 
 export function SideMenu({ visible, onClose }: SideMenuProps) {
